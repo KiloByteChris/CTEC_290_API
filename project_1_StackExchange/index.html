@@ -6,6 +6,32 @@
 		Project 1 Stack Exchange
 		CTEC 290 API
 		Winter 2018
+
+		-Include page headers, footers and navigation as needed
+		-The page must be professional looking
+		-Use HTML5 markup
+		-The page HTML and CSS must validate
+		-All code must be adequately commented
+		-Provide a way for users to manually refresh the content sections
+		-Display a list of the latest 15 questions asked on the site and include the following with each question:
+			-The questions title
+			-The name of the person who submitted the question and their reputation and their avatar. The image and name should be clickable and link to their profile on the site.
+			-If the question has been answered display a visual indicator letting users know that it has been answered
+			-Each tag should be clickable and link to a view on the Stack Exchange site which displays all items tagged with that tag.
+		-The questions score
+		-The number of answers for the question
+		-Display a list of the latest 10 questions that have no answers for them. Include the following with each question:
+			-The questions title
+			-The name of the person who submitted the question and their reputation and their avatar. The image and name should be clickable and link to their profile on the site.
+			-If the question has been answered display a visual indicator letting users know that it has been answered
+			-Each tag should be clickable and link to a view on the Stack Exchange site which displays all items tagged with that tag.
+			-The questions score
+			-The number of answers for the question
+		-Provide the user with an option to display the page as follows (use a dropdown menu or a series of links for this):
+			-Featured questions on top followed by the latest 10 questions below
+			-Latest 10 questions on top followed by list of featured questions
+			-Featured questions on the left and latest questions on the right
+			-Latest questions on the left and featured on the right
 	-->
 
 <head>
@@ -13,8 +39,10 @@
 	<title>Project 1 Stack Exchange</title>title>
 
 	<!-- CSS -->
+	<link src="css/main.css" rel="stylesheet" />
 
 	<!-- JQuery -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 
 </head>
 <body>
@@ -31,4 +59,13 @@
 		</footer>
 	</div><!-- end wrapper -->
 </body>
+
+<script>
+
+	var latestQsURL = 'https://api.stackexchange.com/2.2/questions?order=desc&sort=activity&site=stackoverflow';
+
+	$(document).ready(function(){
+
+	}); // end document ready
+</script>
 </html>
