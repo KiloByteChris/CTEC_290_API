@@ -4,5 +4,21 @@
 	CSS for Project 1 - Stack Exchange API
 	CTEC 290 API
 	Winter 2018
-	
+
 */
+
+#wrapper {
+	width: 1200px;
+	margin: 0 auto;
+	background-color: #c0c0c0;
+}
+
+header {
+	height: 200px;
+}
+
+article {
+	margin-top: 20px;
+	background-color: #fff;
+	border: 1px solid #000;
+}

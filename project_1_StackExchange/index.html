@@ -34,12 +34,14 @@
 			-Latest questions on the left and featured on the right
 	-->
 
+
 <head>
 
-	<title>Project 1 Stack Exchange</title>title>
+	<title>Project 1 Stack Exchange</title>
 
 	<!-- CSS -->
-	<link src="css/main.css" rel="stylesheet" />
+	<link href="css/reset.css" rel="stylesheet" />
+	<link href="css/main.css" rel="stylesheet" />
 
 	<!-- JQuery -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
@@ -48,11 +50,19 @@
 <body>
 	<div id="wrapper">
 
-		<head>
-			<h1></h1>
-		</head>
+		<header>
+			<h1>Stack Exchange API</h1>
+			<nav>
+				
+			</nav>
+		</header>
 
 		<main>
+			<section id="resultSection">
+			</section>
+
+			<section>
+			</section>
 		</main>
 
 		<footer>
@@ -62,10 +72,32 @@
 
 <script>
 
-	var latestQsURL = 'https://api.stackexchange.com/2.2/questions?order=desc&sort=activity&site=stackoverflow';
+	// API URLs 
+	var latestQsURL = 'https://api.stackexchange.com/2.2/questions?pagesize=20&order=desc&sort=activity&site=stackoverflow';
+
+	var resultSection = $('#resultSection');
 
 	$(document).ready(function(){
 
-	}); // end document ready
+		// GET JSON from the Stack Exchange API
+		$.ajax({
+			url: latestQsURL,
+			methof: 'GET',
+		}).done(function(data){
+			console.log(data);
+
+
+			// display the information from the API
+			$.each(data.items, function(key, value){
+				console.log(value.title);
+				resultSection.append(
+					'<article>' +
+						'<h2>' + value.title + '</h2>' +
+					'</article>'
+				); //end append
+
+			});  // end .each
+		})  // end .done
+	});  // end .ready
 </script>
 </html>
