@@ -14,8 +14,8 @@
 		-All code must be adequately commented
 		-Provide a way for users to manually refresh the content sections
 		-Display a list of the latest 15 questions asked on the site and include the following with each question:
-			-The questions title
-			-The name of the person who submitted the question and their reputation and their avatar. The image and name should be clickable and link to their profile on the site.
+			x-The questions title
+			x-The name of the person who submitted the question and their reputation and their avatar. The image and name should be clickable and link to their profile on the site.
 			-If the question has been answered display a visual indicator letting users know that it has been answered
 			-Each tag should be clickable and link to a view on the Stack Exchange site which displays all items tagged with that tag.
 		-The questions score
@@ -82,7 +82,7 @@
 		// GET JSON from the Stack Exchange API
 		$.ajax({
 			url: latestQsURL,
-			methof: 'GET',
+			method: 'GET',
 		}).done(function(data){
 			console.log(data);
 
@@ -90,11 +90,14 @@
 			// display the information from the API
 			$.each(data.items, function(key, value){
 				console.log(value.title);
-				resultSection.append(
-					'<article>' +
+				var displayString = '<article>' +
 						'<h2>' + value.title + '</h2>' +
-					'</article>'
-				); //end append
+						'<a href=' + value.owner.link +'><img src='+ value.owner.profile_image + '/></a>' +
+						'<a href=' + value.owner.link +'><h3>' + value.owner.display_name +'</h3></a>' +
+						'<p>' + value.owner.reputation + '</p>' +
+						'</article>'; // end displayString
+
+				resultSection.append(displayString); //end .append
 
 			});  // end .each
 		})  // end .done
