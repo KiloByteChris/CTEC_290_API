@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Mustache with AJAX/JSON</title>
+<link href="css/styles.css" rel="stylesheet">
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="js/mustache.js"></script>
+<script>
+$("document").ready(function() {
+var template = $("#itemTemplate").html();
+
+// var url = "http://ideajam.net/ideajam/p/ij.nsf/jsonGetIdeaSpaces";
+
+var url = "http://ideajam.net/ideajam/p/ij.nsf/jsonGetWhatsHot";
+
+var jqxhr = $.ajax({
+url:url,
+method:"GET",
+dataType: "JSON"})
+.done(function(data){
+var result = Mustache.render(template, data);
+$("#container").html(result);
+});
+}); // end ready
+</script>
+</head>
+<body>
+<script type="text/template" id="itemTemplate">
+<div class="itemTemplateWrapper">
+
+{{#result}}
+<div class="idea">
+<div><span>Name: </span><span>{{createdby}}</span></div>
+<div><span>Idea: </span><span>{{idea}}</span></div> 
+<div>Tags:
+{{#tags}}
+{{tags}}
+{{/tags}}
+</div> 
+<div><span>IdeaSpace: </span><span>{{ideaspace}}</span></div> 
+<div><span>Description: </span><span>{{body}}</span></div> 
+</div>
+{{/result}}
+
+</div>
+</script>
+
+<h1>Simple Templates with Mustache JS</h1>
+<h3>This example embeds the template directly in the source HTML</h3>
+
+<!-- This is the container where the templates will be instantiated -->
+<div id="container"></div>
+</body>
+</html>
