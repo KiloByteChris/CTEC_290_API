@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<!--
+	Chris McGuire
+	CTEC 290 -API
+	Skill Building 3
+	Winter 18
+-->
+
+<head>
+	<title>Week3 - Skill building 3</title>
+	<meta charset="utf-8" />
+
+	<!-- JQUERY -->
+ 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
+ 	<!-- Mustache library -->
+	<script src="js/mustache.js"></script>
+
+	<script>
+	$('document').ready(function() {
+		// select the template
+		var template = $('#studentTemplate').html();
+
+		// object containing student information
+		var students = Mustache.render(template, {
+			'results': [{
+				'firstname': 'Mark',
+				'lastname' :'Smith',
+			 	'gpa': 3.8,
+				'gender' : 'male',
+				'degree_program': 'Pizza Delivery Certification', 
+				'enrolled_courses': ['Driving', 'Making Pizza', 'Dough Prep'] 
+			},{
+				'firstname': 'Billy',
+				'lastname' : 'Zoom',
+				'gpa': 2.5,
+				'gender': 'male',
+				'degree_program': 'Moped Mechanic', 
+				'enrolled_courses':['Moped Oil Change 1', 'Finding Old Parts', 'Moped Driving']
+			},{
+				'firstname': 'Ed',
+				'lastname' : 'Davis',
+				'gpa': 1.5,
+				'gender': 'male',
+				'degree_program': 'NBA Rebound Certification', 
+				'enrolled_courses':['Weight Lifting 1', 'Weight Lifting 2', 'Passing 1 - What to do after you get the ball']
+			},{
+				'firstname': 'Claire',
+				'lastname' : 'Howard',
+				'gpa': 2.7,
+				'gender': 'female',
+				'degree_program': 'Astronaught', 
+				'enrolled_courses':['Physics', 'Space Suite Fundamentals', 'Floating In Space 2']
+			}]
+		});
+		$('#container').html(students);
+	}); // end ducument ready
+
+	
+	</script>
+
+</head>
+<body>
+	<main>
+
+		<script type="text/template" id="studentTemplate">
+			{{#results}}
+				<h2>Firstname: {{firstname}}</h2>
+				<h2>Lastname: {{lastname}}</h2>
+				<p>GPA: {{gpa}}</p>
+				<p>Gender: {{gender}}</p>
+				<p>Degree Program: {{degree_program}}</p>
+			{{/results}}
+		</script>
+		<div id="container">
+		</div>
+	</main>
+</body>
+</html>
