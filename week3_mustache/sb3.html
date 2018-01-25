@@ -8,7 +8,7 @@
 -->
 
 <head>
-	<title>Week3 - Skill building 1</title>
+	<title>Week3 - Skill building 3</title>
 	<meta charset="utf-8" />
 
 	<!-- JQUERY -->
@@ -52,12 +52,20 @@
 			// iterate through the properties of the results. Generate a string to display the information
 			$.each(students.results, function(key, value){
 
+				// get the length of the enroller_courses array and minus one so I can tell when the last iteration is
+				var arrayLength = value.enrolled_courses.length -1 ;
+				
 				//interate through the courses array and build a string to display the results
 				var courseDisplayString = '<p>';
 				$.each(value.enrolled_courses, function(key, value){
-					courseDisplayString += value;
-					//enter logic here to checkif it's the last iteration of .each so i can emove the comma at the end of the list
-					courseDisplayString += ', ';
+
+					//use the value of the key to check if it is the last itereaton
+					if(key != arrayLength){
+						courseDisplayString += value;
+						courseDisplayString += ', ';
+					}else{
+						courseDisplayString += value;
+					};
 				});
 				courseDisplayString +='</p>';
 				
