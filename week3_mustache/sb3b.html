@@ -7,11 +7,11 @@
 	XCurrent Weather
 	X5 Day Forecast 
 	Your display of the weather report must include the following:
-	Temperature, low temperature, high temperature
-	Humidity
-	Pressure
-	Wind Conditions
-	A graphic image showing the conditions which the API provides
+		XTemperature, low temperature, high temperature
+		Humidity
+		Pressure
+		Wind Conditions
+		A graphic image showing the conditions which the API provides
 	Use your creativity to create a professional looking page
 	Ask questions for this assignment in the Slack #skill_building channel
 	Submit a zip file of your work in Canvas.
@@ -50,24 +50,39 @@
 		url += city;
 		url += apiParam;
 		url += apiKey;
-		console.log(url);
+		//console.log(url);
 
-		var call = $.ajax({
+		var weatherAPI = $.ajax({
 			url: url,
 			method: 'GET',
 			dataType: 'JSON'
 		}).done( function(data){
+
 			console.log(data);
 
-			// select the template
-			var template = $('#weatherTemplate').html();
-			//console.log(template);
+			// Decide which weather report was chosen so the differnt JSON can be used
+			if(report == "weather") {
 
+				// select the template
+				var template = $('#weatherTemplate').html();
+				//console.log(template);
+
+			}if(report == "forecast"){
+
+				// select the template
+				var template = $('#forecastTemplate').html();
+				//console.log(template);
+			}
+
+			// use mustache.js to combine the html template and the JSON object
 			var result = Mustache.render(template, data);
 			console.log(result);
+
+			// apply the html returned from mustahce.js to the html container to display the results
 			$('#container').html(result);
-		});
-	}// end search function
+
+		}); // end .done
+	} // end search function
 	</script>
 </head>
 <body>
@@ -77,6 +92,7 @@
 	<main>
 		<h2>Welcome to the weather station</h2>
 		
+			<!-- FORM -->
 			<label for="cityInput">Enter A City</label>
 			<input type="text" id="cityInput" name="cityInput">
 
@@ -87,8 +103,39 @@
 			</select>
 			<button value="search" onclick="search()">Search</button>	
 
-			<script type="text/template" id="weatherTemplate">
-				{{coord.lat}}
+			<!-- WEATHER TEMPLATE --> 
+			<script type="text/mustache" id="weatherTemplate">
+
+				<h2>Temperature</h2>
+				<p>Current Temperature: {{main.temp}}</p>
+				<p>High Temperature: {{main.temp_max}}</p>
+				<p>Low Temperature: {{main.temp_min}}</p>
+				<p>Humidity: {{main.humidity}}</p>
+				<p>Pressure: {{main.pressure}}</p>
+				<p>{{#weather}}</p>
+					<img src="http://openweathermap.org/img/w/{{icon}}.png" />
+				<p>{{/weather}}</p>
+					
+			</script>
+
+			<!-- FORECAST TEMPLATE -->
+			<script type="text/mustache" id="forecastTemplate">
+				<h2>5 Day Weather forecast For: {{city.name}}</h2>
+
+				{{#list}}
+					<h3>{{dt_txt}}</h3>
+					{{main.temp}}
+				{{/list}}
+				<h2>Temperature</h2>
+				<p>Current Temperature: {{main.temp}}</p>
+				<p>High Temperature: {{main.temp_max}}</p>
+				<p>Low Temperature: {{main.temp_min}}</p>
+				<p>Humidity: {{main.humidity}}</p>
+				<p>Pressure: {{main.pressure}}</p>
+				<p>{{#weather}}</p>
+					<img src="http://openweathermap.org/img/w/{{icon}}.png" />
+				<p>{{/weather}}</p>
+					
 			</script>
 			<div id="container">
 			</div>
