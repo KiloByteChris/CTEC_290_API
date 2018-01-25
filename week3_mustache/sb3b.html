@@ -1,22 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<!--
-	XProvides a field for a user to enter in the location that they would like to get a weather report for such as "Vancouver, WA" or "Portland, Oregon".
-	XGive the user an option to select what type of weather report to display:
-	XCurrent Weather
-	X5 Day Forecast 
-	Your display of the weather report must include the following:
-		XTemperature, low temperature, high temperature
-		Humidity
-		Pressure
-		Wind Conditions
-		A graphic image showing the conditions which the API provides
-	Use your creativity to create a professional looking page
-	Ask questions for this assignment in the Slack #skill_building channel
-	Submit a zip file of your work in Canvas.
--->
-
 <head>
 
 	<title>Week 3 skill building 3b</title>
@@ -106,6 +90,7 @@
 			<!-- WEATHER TEMPLATE --> 
 			<script type="text/mustache" id="weatherTemplate">
 
+				<article>
 				<h2>Temperature</h2>
 				<p>Current Temperature: {{main.temp}}</p>
 				<p>High Temperature: {{main.temp_max}}</p>
@@ -115,26 +100,27 @@
 				<p>{{#weather}}</p>
 					<img src="http://openweathermap.org/img/w/{{icon}}.png" />
 				<p>{{/weather}}</p>
-					
+				</article>
+
 			</script>
 
 			<!-- FORECAST TEMPLATE -->
 			<script type="text/mustache" id="forecastTemplate">
 				<h2>5 Day Weather forecast For: {{city.name}}</h2>
 
+				<article>
 				{{#list}}
 					<h3>{{dt_txt}}</h3>
-					{{main.temp}}
-				{{/list}}
-				<h2>Temperature</h2>
-				<p>Current Temperature: {{main.temp}}</p>
-				<p>High Temperature: {{main.temp_max}}</p>
-				<p>Low Temperature: {{main.temp_min}}</p>
-				<p>Humidity: {{main.humidity}}</p>
-				<p>Pressure: {{main.pressure}}</p>
-				<p>{{#weather}}</p>
+					<p>Current Tempurature: {{main.temp}}</p>
+					<p>Max Tempurature: {{main.temp_max}}</p>
+					<p>Min Tempurature: {{main.temp_min}}</p>
+					<p>Humidity: {{main.humidity}}</p>
+					<p>Pressure: {{main.pressure}}</p>
+					<p>{{#weather}}</p>
 					<img src="http://openweathermap.org/img/w/{{icon}}.png" />
-				<p>{{/weather}}</p>
+					<p>{{/weather}}</p>
+				{{/list}}
+				</article>
 					
 			</script>
 			<div id="container">
