@@ -1,5 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
+
+<!--
+	XProvides a field for a user to enter in the location that they would like to get a weather report for such as "Vancouver, WA" or "Portland, Oregon".
+	XGive the user an option to select what type of weather report to display:
+	XCurrent Weather
+	X5 Day Forecast 
+	Your display of the weather report must include the following:
+	Temperature, low temperature, high temperature
+	Humidity
+	Pressure
+	Wind Conditions
+	A graphic image showing the conditions which the API provides
+	Use your creativity to create a professional looking page
+	Ask questions for this assignment in the Slack #skill_building channel
+	Submit a zip file of your work in Canvas.
+-->
+
 <head>
 
 	<title>Week 3 skill building 3b</title>
@@ -21,9 +38,53 @@
 	</header>
 	<main>
 		<h2>Welcome to the weather station</h2>
-		<p>Choose Your City</p>
-		<button type="button" id="portlandButton" value="Portland, OR" >Portland, OR</button>
-		<button type="button" id="vancouverButton" value="Vancouver, WA" >Vancouver, WA</button>
+		
+			<label for="cityInput">Enter A City</label>
+			<input type="text" id="cityInput" name="cityInput">
+
+			<label for="weatherReport">Select a Weather Report</label>
+			<select id="weatherReport" name="weatherReport">
+				<option value="currentWeather">Current Weather</option>
+				<option value="5day">5 Day Forcast</option>
+			</select>
+			<button value="search" onclick="search()">Search</button>
+		
+		
 	</main>
 </body>
+
+<script>
+
+	// function that searches selects the values fromt he inputs and requists the information from the api
+	function search(){
+
+		// Define variables with api infromation
+		var url = "http://api.openweathermap.org/data/2.5/weather?q=";
+		var apiParam = "&appid="
+		var apiKey = "0d78f016d75e6ca170516578566505bd";
+
+		// select the values form the form
+		var city = $('#cityInput').val();
+		var report = $('#weatherReport').val();
+
+		url += city;
+		url += apiParam;
+		url += apiKey;
+
+		//var url= 'http://api.openweathermap.org/data/2.5/forecast?q=portland&appid=0d78f016d75e6ca170516578566505bd';
+
+		$.ajax({
+			url: url,
+			method: 'GET'
+		}).done(function(data){
+			console.log(data);
+		});
+
+
+		
+	}
+
+	
+
+</script>
 </html>
