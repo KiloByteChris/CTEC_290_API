@@ -9,9 +9,9 @@
 $("document").ready(function() {
 var template = $("#itemTemplate").html();
 
-// var url = "http://ideajam.net/ideajam/p/ij.nsf/jsonGetIdeaSpaces";
+var url = "http://ideajam.net/ideajam/p/ij.nsf/jsonGetIdeaSpaces";
 
-var url = "http://ideajam.net/ideajam/p/ij.nsf/jsonGetWhatsHot";
+// var url = "http://ideajam.net/ideajam/p/ij.nsf/jsonGetWhatsHot";
 
 var jqxhr = $.ajax({
 url:url,
@@ -19,6 +19,7 @@ method:"GET",
 dataType: "JSON"})
 .done(function(data){
 var result = Mustache.render(template, data);
+console.log(result);
 $("#container").html(result);
 });
 }); // end ready

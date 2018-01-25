@@ -30,7 +30,45 @@
 
  	<!-- MUSTACHE LIBRARY -->
 	<script src="js/mustache.js"></script>
+	<script>
 
+	// function that searches selects the values fromt he inputs and requists the information from the api
+	function search() {
+
+		// Define variables with api infromation
+		var url = "http://api.openweathermap.org/data/2.5/";
+		var apiParam = "&appid="
+		var apiKey = "0d78f016d75e6ca170516578566505bd";
+
+		// select the values form the form
+		var report = $('#weatherReport').val();
+		var city = $('#cityInput').val();
+		
+		//Build the url for the api request
+		url += report;
+		url += "?q=";
+		url += city;
+		url += apiParam;
+		url += apiKey;
+		console.log(url);
+
+		var call = $.ajax({
+			url: url,
+			method: 'GET',
+			dataType: 'JSON'
+		}).done( function(data){
+			console.log(data);
+
+			// select the template
+			var template = $('#weatherTemplate').html();
+			//console.log(template);
+
+			var result = Mustache.render(template, data);
+			console.log(result);
+			$('#container').html(result);
+		});
+	}// end search function
+	</script>
 </head>
 <body>
 	<header>
@@ -44,47 +82,18 @@
 
 			<label for="weatherReport">Select a Weather Report</label>
 			<select id="weatherReport" name="weatherReport">
-				<option value="currentWeather">Current Weather</option>
-				<option value="5day">5 Day Forcast</option>
+				<option value="weather">Current Weather</option>
+				<option value="forecast">5 Day Forcast</option>
 			</select>
-			<button value="search" onclick="search()">Search</button>
-		
-		
+			<button value="search" onclick="search()">Search</button>	
+
+			<script type="text/template" id="weatherTemplate">
+				{{coord.lat}}
+			</script>
+			<div id="container">
+			</div>
 	</main>
 </body>
 
-<script>
 
-	// function that searches selects the values fromt he inputs and requists the information from the api
-	function search(){
-
-		// Define variables with api infromation
-		var url = "http://api.openweathermap.org/data/2.5/weather?q=";
-		var apiParam = "&appid="
-		var apiKey = "0d78f016d75e6ca170516578566505bd";
-
-		// select the values form the form
-		var city = $('#cityInput').val();
-		var report = $('#weatherReport').val();
-
-		url += city;
-		url += apiParam;
-		url += apiKey;
-
-		//var url= 'http://api.openweathermap.org/data/2.5/forecast?q=portland&appid=0d78f016d75e6ca170516578566505bd';
-
-		$.ajax({
-			url: url,
-			method: 'GET'
-		}).done(function(data){
-			console.log(data);
-		});
-
-
-		
-	}
-
-	
-
-</script>
 </html>
