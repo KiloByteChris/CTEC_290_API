@@ -57,6 +57,8 @@
 				
 				//interate through the courses array and build a string to display the results
 				var courseDisplayString = '<p>';
+				courseDisplayString += "Enrolled Courses: ";
+				
 				$.each(value.enrolled_courses, function(key, value){
 
 					//use the value of the key to check if it is the last itereaton
