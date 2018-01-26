@@ -46,6 +46,84 @@
 	<!-- JQuery -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 
+	<script>
+
+	// search() function takes the value from the select box and uses it to maek an ajax request
+	function search(){
+		var searchType= $('#searchTypeSelect').val();
+
+		// API URLs
+		var latestURL = 'https://api.stackexchange.com/2.2/questions?pagesize=15&order=desc&sort=activity&site=stackoverflow';
+		var unansweredURL = 'https://api.stackexchange.com//2.2/questions/unanswered?pagesize=10&order=desc&sort=creation&site=stackoverflow';
+
+		// check which search was selected. use the correct url
+		if(searchType == 'latestQs'){
+
+			// the url for the search
+			var URL = latestURL;
+
+		}else if(searchType == 'latestNoAnswer'){ 
+
+			var URL = unansweredURL;
+		
+		}else if(searchType == 'featureOnTop'){ 
+
+			var URL = 'https://api.stackexchange.com//2.2/questions/unanswered?pagesize=10&order=desc&sort=creation&site=stackoverflow';
+			
+		}else if(searchType == 'latestOnTop'){ 
+
+			var latestURL = '';
+
+		}else if(searchType == 'featuredOnLeft'){ 
+
+			var URL = '';
+
+		}else if(searchType == 'latestOnLeft'){ 
+
+			var URL = '';
+		}
+
+		$.ajax({
+			url: URL,
+			method: 'GET',
+		}).done(function(data){
+			console.log(data);
+
+			// iterate through all the JSON items 
+			$.each(data.items, function(key, value){
+				
+				// determine if the question has been answered
+				if(value.is_answered == false) {
+					answerStatus = 'not answered';
+				}else{
+					answerStatus = 'answered';
+				}
+
+				// Create a display function for the tags
+				var tags = value.tags; 
+				var tagString = '';
+				$.each(tags, function(index, value) {
+					var tagURL = 'https://stackoverflow.com/questions/tagged/';
+					tagURL += value;
+					tagString += '<a href=' + tagURL + '><li>' + value + '</li></a>';
+				});// end tags .each
+
+				var defaultDisplayString = '<article>' +
+					'<h2>' + value.title + '</h2>' +
+					'<a href=' + value.owner.link +'><img src='+ value.owner.profile_image + '/></a>' +
+					'<a href=' + value.owner.link +'><h3>' + value.owner.display_name +'</h3></a>' +
+					'<p>' + value.owner.reputation + '</p>' +
+					'<p>' + answerStatus + '</p>' +
+					'<ul>' + tagString + '</ul>' +
+					'</article>';
+
+				$('#resultSection').append(defaultDisplayString); //end .append
+
+			});  // end .each
+		})  // end .done
+	} // end search() function
+</script>
+
 
 
 </head>
@@ -87,78 +165,4 @@
 		</footer>
 	</div><!-- end wrapper -->
 </body>
-
-<script>
-
-	// API URLs 
-	
-
-	var resultSection = $('#resultSection');
-
-	// search() function takes the value from the select box and uses it to maek an ajax request
-	function search(){
-		var searchType= $('#searchTypeSelect').val();
-		if(searchType == 'latestQs'){
-			// the url for the search
-			var URL = 'https://api.stackexchange.com/2.2/questions?pagesize=20&order=desc&sort=activity&site=stackoverflow';
-			// select the correct display string for the search
-
-		}else if(searchType == 'latestNoAnswer'){ 
-
-		}else if(searchType == 'featureOnTop'){ 
-
-		}else if(searchType == 'latestOnTop'){ 
-
-		}else if(searchType == 'featuredOnLeft'){ 
-
-		}else if(searchType == 'latestOnLeft'){ 
-
-		}
-	} // end search function
-
-	$(document).ready(function(){
-
-		// GET JSON from the Stack Exchange API
-		$.ajax({
-			url: URL,
-			method: 'GET',
-		}).done(function(data){
-			console.log(data);
-
-
-			// display the information from the API
-			$.each(data.items, function(key, value){
-				
-
-				// determine if the question has been answered
-				if(value.is_answered == false) {
-					answerStatus = 'not answered';
-				}else{
-					answerStatus = 'answered';
-				}
-
-				// Create a display function for the tags
-				var tags = value.tags; 
-				var tagString = '';
-				$.each(tags, function(index, value) {
-					var tagURL = 'https://stackoverflow.com/questions/tagged/';
-					tagURL += value;
-					tagString += '<a href=' + tagURL + '><li>' + value + '</li></a>';
-				});// end tags .each
-
-				var displayString = '<article>' +
-						'<h2>' + value.title + '</h2>' +
-						'<a href=' + value.owner.link +'><img src='+ value.owner.profile_image + '/></a>' +
-						'<a href=' + value.owner.link +'><h3>' + value.owner.display_name +'</h3></a>' +
-						'<p>' + value.owner.reputation + '</p>' +
-						'<p>' + answerStatus + '</p>' +
-						'<ul>' + tagString + '</ul>' +
-						'</article>'; // end displayString
-
-				resultSection.append(displayString); //end .append
-
-			});  // end .each
-		})  // end .done
-	});  // end .ready
-</script>
 </html>
