@@ -24,7 +24,7 @@
 		var apiParam = "&appid="
 		var apiKey = "0d78f016d75e6ca170516578566505bd";
 
-		// select the values form the form
+		// select the values from the inputs
 		var report = $('#weatherReport').val();
 		var city = $('#cityInput').val();
 		
@@ -70,37 +70,41 @@
 	</script>
 </head>
 <body>
-	<header>
-		<h1>Skill Building #3 - Open Weather API</h1>
-	</header>
-	<main>
-		<h2>Welcome to the weather station</h2>
-		
-			<!-- FORM -->
-			<label for="cityInput">Enter A City</label>
-			<input type="text" id="cityInput" name="cityInput">
+	<div id="wrapper">
+		<header>
+			<h1>Skill Building #3 - Open Weather API</h1>
+		</header>
+		<main>
 
-			<label for="weatherReport">Select a Weather Report</label>
-			<select id="weatherReport" name="weatherReport">
-				<option value="weather">Current Weather</option>
-				<option value="forecast">5 Day Forcast</option>
-			</select>
-			<button value="search" onclick="search()">Search</button>	
+			<h2>Welcome to the Weather Station</h2>
+			
+			<!-- FORM -->
+			<div id="formDiv">
+				<label for="cityInput">Enter a City</label>
+				<input type="text" id="cityInput" name="cityInput" placeholder="portland">
+
+				<label for="weatherReport">Select a Weather Report</label>
+				<select id="weatherReport" name="weatherReport">
+					<option value="weather">Current Weather</option>
+					<option value="forecast">5 Day Forcast</option>
+				</select>
+				<button value="search" onclick="search()">Search</button>	
+			</div><!-- end formDiv -->
 
 			<!-- WEATHER TEMPLATE --> 
 			<script type="text/mustache" id="weatherTemplate">
+				<h2>Current Weather For: {{name}}</h2>
 
-				<article>
-				<h2>Temperature</h2>
-				<p>Current Temperature: {{main.temp}}</p>
-				<p>High Temperature: {{main.temp_max}}</p>
-				<p>Low Temperature: {{main.temp_min}}</p>
-				<p>Humidity: {{main.humidity}}</p>
-				<p>Pressure: {{main.pressure}}</p>
-				<p>{{#weather}}</p>
-					<img src="http://openweathermap.org/img/w/{{icon}}.png" />
-				<p>{{/weather}}</p>
-				</article>
+				<div class="currentWeatherDiv">
+					<p>Current Temperature: {{main.temp}}</p>
+					<p>High Temperature: {{main.temp_max}}</p>
+					<p>Low Temperature: {{main.temp_min}}</p>
+					<p>Humidity: {{main.humidity}}</p>
+					<p>Pressure: {{main.pressure}}</p>
+					{{#weather}}
+						<img src="http://openweathermap.org/img/w/{{icon}}.png" />
+					{{/weather}}
+				</div>
 
 			</script>
 
@@ -108,24 +112,28 @@
 			<script type="text/mustache" id="forecastTemplate">
 				<h2>5 Day Weather forecast For: {{city.name}}</h2>
 
-				<article>
+				
 				{{#list}}
-					<h3>{{dt_txt}}</h3>
-					<p>Current Tempurature: {{main.temp}}</p>
-					<p>Max Tempurature: {{main.temp_max}}</p>
-					<p>Min Tempurature: {{main.temp_min}}</p>
-					<p>Humidity: {{main.humidity}}</p>
-					<p>Pressure: {{main.pressure}}</p>
-					<p>{{#weather}}</p>
-					<img src="http://openweathermap.org/img/w/{{icon}}.png" />
-					<p>{{/weather}}</p>
+					<div class="forecastWeatherDiv">
+						<h3 class="dateHeader">{{dt_txt}}</h3>
+						<p>Current Tempurature: {{main.temp}}</p>
+						<p>Max Tempurature: {{main.temp_max}}</p>
+						<p>Min Tempurature: {{main.temp_min}}</p>
+						<p>Humidity: {{main.humidity}}</p>
+						<p>Pressure: {{main.pressure}}</p>
+						{{#weather}}
+							<img src="http://openweathermap.org/img/w/{{icon}}.png" />
+						{{/weather}}
+					</div>
 				{{/list}}
-				</article>
+				
 					
 			</script>
 			<div id="container">
 			</div>
-	</main>
+		</main>
+		<footer></footer>
+	</div> <!-- end wrapper
 </body>
 
 

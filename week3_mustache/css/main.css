@@ -1,0 +1,90 @@
+/*
+	CSS for skill building 3b
+	Chris McGuire
+	CTEC 290 API
+	Winter 18
+*/
+
+body {
+	background-color: #aee4ff;
+
+}
+
+#wrapper{
+	background-color: #fff;
+	margin: 10px auto;
+	padding: 30px;
+	border-radius: 10px;
+	box-shadow: 0 0 10px rgba(0,0,0,0.13);
+	max-width: 960px;
+}
+
+header {
+	width: 100%;
+	background-color: #2a88ad;
+	border: 1px solid #257c9e;
+	border-radius: 10px;
+	box-shadow: inset 0 2px 2px 0 rgba(255, 255, 255, 0.17);
+}
+
+h1 {
+	color: #fff;
+	font-family: Arial, Helvetica, sans-serif;
+	font-weight: 300;
+	font-size: 30px;
+	padding: 20px 30px 15px 30px;
+	border-radius: 10px 10px 0 0;
+	text-shadow: 1px 1px 3px rgba(0,0,0,0.12);
+}
+
+h2 {
+	font-family: Arial, Helvetica, sans-serif;
+	letter-spacing: .05em;
+	margin-left: 20px;
+	font-weight: 300;
+}
+
+#formDiv {
+	margin-left: 20px;
+}
+
+label {
+	display: block;
+	font-family: Arial, Helvetica, sans-serif;
+	margin: 10px 0 10px 0;
+}
+
+.currentWeatherDiv {
+	float: left;
+	width: 300px; 
+	border: 1px solid #ccc; 
+	border-radius: 15px;
+	margin: 10px 0 24px 0;
+	box-shadow: 3px 3px #ccc;
+}
+
+
+.forecastWeatherDiv {
+	float: left;
+	width: 210px; 
+	border: 1px solid #ccc;
+	border-radius: 15px;
+	margin: 10px 14px 10px 14px;
+	box-shadow: 3px 3px #ccc;
+}
+
+.dateHeader {
+	text-align: center;
+}
+
+p {
+	margin-left: 10px;
+}
+
+img {
+	margin: 0 auto;
+}
+
+footer {
+	clear: both;
+}
