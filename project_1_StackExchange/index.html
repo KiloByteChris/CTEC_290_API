@@ -46,6 +46,8 @@
 	<!-- JQuery -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 
+
+
 </head>
 <body>
 	<div id="wrapper">
@@ -58,7 +60,23 @@
 		</header>
 
 		<main>
+			<section id="formSection">
+				<h3>Select The Questions You Want To View</h3>
+				<select id="searchTypeSelect">
+					<option value="latestQs">Latest 15 Questions</option>
+					<option value="latestNoAnswer">Latest 10 Questions with no answer</option>
+					<option value="featureOnTop">Featured Questions On top, Latest Questions Below</option>
+					<option value="latestOnTop">Latest Questions On Top, Featured Questions Below</option>
+					<option value="featuredOnLeft">Featured Questions On The Left, Latest Questions On The Right</option>
+					<option value="latestOnLeft">Latest Questions On The Left, Featured Questions On The Right</option>
+
+				</select>
+				<button name="search" value=search onclick="search()">Search</button>
+				
+			</section>
+
 			<section id="resultSection">
+
 			</section>
 
 			<section>
@@ -73,15 +91,36 @@
 <script>
 
 	// API URLs 
-	var latestQsURL = 'https://api.stackexchange.com/2.2/questions?pagesize=20&order=desc&sort=activity&site=stackoverflow';
+	
 
 	var resultSection = $('#resultSection');
+
+	// search() function takes the value from the select box and uses it to maek an ajax request
+	function search(){
+		var searchType= $('#searchTypeSelect').val();
+		if(searchType == 'latestQs'){
+			// the url for the search
+			var URL = 'https://api.stackexchange.com/2.2/questions?pagesize=20&order=desc&sort=activity&site=stackoverflow';
+			// select the correct display string for the search
+
+		}else if(searchType == 'latestNoAnswer'){ 
+
+		}else if(searchType == 'featureOnTop'){ 
+
+		}else if(searchType == 'latestOnTop'){ 
+
+		}else if(searchType == 'featuredOnLeft'){ 
+
+		}else if(searchType == 'latestOnLeft'){ 
+
+		}
+	} // end search function
 
 	$(document).ready(function(){
 
 		// GET JSON from the Stack Exchange API
 		$.ajax({
-			url: latestQsURL,
+			url: URL,
 			method: 'GET',
 		}).done(function(data){
 			console.log(data);
