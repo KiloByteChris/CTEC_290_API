@@ -16,7 +16,7 @@
 	<script src="js/mustache.js"></script>
 	<script>
 
-	// function that searches selects the values fromt he inputs and requists the information from the api
+	// function that searches selects the values using the informtion from the text input and select box
 	function search() {
 
 		// Define variables with api infromation
@@ -34,35 +34,30 @@
 		url += city;
 		url += apiParam;
 		url += apiKey;
-		//console.log(url);
-
+	
+		// make the api request
 		var weatherAPI = $.ajax({
 			url: url,
 			method: 'GET',
 			dataType: 'JSON'
 		}).done( function(data){
 
-			console.log(data);
-
 			// Decide which weather report was chosen so the differnt JSON can be used
 			if(report == "weather") {
 
 				// select the template
 				var template = $('#weatherTemplate').html();
-				//console.log(template);
 
 			}if(report == "forecast"){
 
 				// select the template
 				var template = $('#forecastTemplate').html();
-				//console.log(template);
 			}
 
 			// use mustache.js to combine the html template and the JSON object
 			var result = Mustache.render(template, data);
-			console.log(result);
 
-			// apply the html returned from mustahce.js to the html container to display the results
+			// apply the html returned from mustahce.js to the container div to display the results
 			$('#container').html(result);
 
 		}); // end .done
@@ -111,7 +106,6 @@
 			<!-- FORECAST TEMPLATE -->
 			<script type="text/mustache" id="forecastTemplate">
 				<h2>5 Day Weather forecast For: {{city.name}}</h2>
-
 				
 				{{#list}}
 					<div class="forecastWeatherDiv">
@@ -126,15 +120,12 @@
 						{{/weather}}
 					</div>
 				{{/list}}
-				
-					
+						
 			</script>
 			<div id="container">
 			</div>
 		</main>
 		<footer></footer>
-	</div> <!-- end wrapper
+	</div> <!-- end wrapper -->
 </body>
-
-
 </html>
