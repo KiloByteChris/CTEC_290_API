@@ -52,6 +52,62 @@
 	// search() function takes the value from the select box and uses it to make an ajax request
 	function search(){
 
+		// function within the main function that makes the ajax request and processes the JSON 
+		function ajaxRequest(URL, heading) {
+			$.ajax({
+				url: URL,
+				method: 'GET',
+			}).done(function(data){
+				//console.log(data);
+
+				// begin a div to contain all the results
+				var defaultDisplayString = '<div class="questionsDiv">';
+
+				// Create a header for the different sections
+				defaultDisplayString += "<h2>"+ heading +"</h2>";
+
+				// iterate through all the JSON items 
+				$.each(data.items, function(key, value){
+					
+					// determine if the question has been answered
+					if(value.is_answered == false) {
+						answerStatus = 'not answered';
+					}else{
+						answerStatus = 'answered';
+					}
+
+					// display the tags
+					var tags = value.tags; 
+					var tagString = '';
+					$.each(tags, function(index, value) {
+						var tagURL = 'https://stackoverflow.com/questions/tagged/';
+						tagURL += value;
+						tagString += '<a href=' + tagURL + '><li>' + value + '</li></a>';
+					});// end tags .each
+
+					// build the display string
+					defaultDisplayString += '<article>' +
+						'<h3>' + value.title + '</h3>' +
+						'<a href=' + value.owner.link +'><img src='+ value.owner.profile_image + '/></a>' +
+						'<a href=' + value.owner.link +'><h4>' + value.owner.display_name +'</h4></a>' +
+						'<p>' + value.owner.reputation + '</p>' +
+						'<p>' + answerStatus + '</p>' +
+						'<ul>' + tagString + '</ul>' +
+						'</article>';
+
+				});  // end .each
+
+				// end the div, display the string	
+				defaultDisplayString += "</div>";
+				// $('#resultSection').append(defaultDisplayString);
+				$('#resultSection').html(defaultDisplayString);
+
+				if(float){
+					$('.questionsDiv').width('600px');
+				}	
+			})  // end .done
+		} // end ajaxRequest()
+
 		// select the value from the form
 		var searchType= $('#searchTypeSelect').val();
 
@@ -103,82 +159,30 @@
 
 			var URL = featuredURL;
 			var heading = "Featured Questions";
-			ajaxRequest(URL, heading);
+			var float = true;
+			ajaxRequest(URL, heading, float);
 
 			var URL = latestURL;
 			var heading = "The 10 Latest Questions";
-			ajaxRequest(URL, heading);
-			// $('.questionsDiv').width('600px');
-			$('.questionsDiv').css('background-color', 'blue');
-			$('.questionsDiv').css('float', 'left');
+			ajaxRequest(URL, heading, float);
+			
 
 		}else if(searchType == 'latestOnLeft'){ 
 
 			var URL = latestURL;
 			var heading = "The 10 Latest Questions";
-			ajaxRequest(URL, heading);
+			var float = true; 
+			ajaxRequest(URL, heading, float);
 			
 			var URL = featuredURL;
 			var heading = "Featured Questions";
-			ajaxRequest(URL, heading);
+			ajaxRequest(URL, heading, float);
 
 		}
 
-		// function within the main function that makes the ajax request and processes the JSON 
-		function ajaxRequest(URL, heading) {
-			$.ajax({
-				url: URL,
-				method: 'GET',
-			}).done(function(data){
-				//console.log(data);
-
-				// begin a div to contain all the results
-				var defaultDisplayString = '<div class="questionsDiv">';
-
-				// Create a header for the different sections
-				var headerString = "<h2>"+ heading +"</h2>";
-				$('#resultSection').append(headerString);
-
-				// iterate through all the JSON items 
-				$.each(data.items, function(key, value){
-					
-					// determine if the question has been answered
-					if(value.is_answered == false) {
-						answerStatus = 'not answered';
-					}else{
-						answerStatus = 'answered';
-					}
-
-					// Create a display function for the tags
-					var tags = value.tags; 
-					var tagString = '';
-					$.each(tags, function(index, value) {
-						var tagURL = 'https://stackoverflow.com/questions/tagged/';
-						tagURL += value;
-						tagString += '<a href=' + tagURL + '><li>' + value + '</li></a>';
-					});// end tags .each
-
-					defaultDisplayString += '<article>' +
-						'<h3>' + value.title + '</h3>' +
-						'<a href=' + value.owner.link +'><img src='+ value.owner.profile_image + '/></a>' +
-						'<a href=' + value.owner.link +'><h4>' + value.owner.display_name +'</h4></a>' +
-						'<p>' + value.owner.reputation + '</p>' +
-						'<p>' + answerStatus + '</p>' +
-						'<ul>' + tagString + '</ul>' +
-						'</article>';
-
-				});  // end .each
-
-			// end the div, display the string	
-			defaultDisplayString += "</div>";
-			$('#resultSection').append(defaultDisplayString);
-
-			})  // end .done
-		} // end ajaxRequest()
+		
 	} // end search() function
 </script>
-
-
 
 </head>
 <body>
@@ -187,14 +191,9 @@
 		<header>
 			<h1>Stack Exchange API</h1>
 			<nav>
-				
-			</nav>
-		</header>
-
-		<main>
-			<section id="formSection">
 				<h3>Select The Questions You Want To View</h3>
 				<select id="searchTypeSelect">
+
 					<option value="latestQs">Latest 15 Questions</option>
 					<option value="latestNoAnswer">Latest 10 Questions with no answer</option>
 					<option value="featureOnTop">Featured Questions On top, Latest Questions Below</option>
@@ -205,8 +204,10 @@
 				</select>
 				<button name="search" value=search onclick="search()">Search</button>
 				
-			</section>
+			</nav>
+		</header>
 
+		<main>			
 			<section id="resultSection">
 
 			</section>

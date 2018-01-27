@@ -17,8 +17,21 @@ header {
 	height: 200px;
 }
 
+main {clear: both;}
+
 article {
 	margin-top: 20px;
 	background-color: #fff;
-	border: 1px solid #000;
+	/*border: 1px solid #000;*/
+
+}
+
+.questionsDiv {
+	width: 1000px;
+	float: left;
+	margin: 0 auto;
+}
+
+footer {
+	clear: both;
 }
