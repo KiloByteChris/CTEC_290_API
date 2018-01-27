@@ -10,24 +10,20 @@
 #wrapper {
 	width: 1200px;
 	margin: 0 auto;
-	background-color: #c0c0c0;
 }
 
 header {
 	height: 200px;
 }
 
-main {clear: both;}
-
 article {
 	margin-top: 20px;
 	background-color: #fff;
-	/*border: 1px solid #000;*/
-
+	border: 1px solid #000;
 }
 
 .questionsDiv {
-	width: 1000px;
+	width: 1198px;
 	float: left;
 	margin: 0 auto;
 }

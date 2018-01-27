@@ -99,11 +99,10 @@
 
 				// end the div, display the string	
 				defaultDisplayString += "</div>";
-				// $('#resultSection').append(defaultDisplayString);
-				$('#resultSection').html(defaultDisplayString);
+				$('#resultSection').append(defaultDisplayString);
 
 				if(float){
-					$('.questionsDiv').width('600px');
+					$('.questionsDiv').width('498px');
 				}	
 			})  // end .done
 		} // end ajaxRequest()
@@ -126,34 +125,38 @@
 			// select the correct URL for the search, create a heading, call the ajax function
 			var URL = latestURL;
 			var heading = "The 10 Latest Questions";
-			ajaxRequest(URL, heading);
+			var float = false;
+			ajaxRequest(URL, heading, float);
 
 		}else if(searchType == 'latestNoAnswer'){ 
 
 			var URL = unansweredURL;
 			var heading = "The 10 Latest Unanswered Questions";
-			ajaxRequest(URL, heading);
+			var float = false;
+			ajaxRequest(URL, heading, float);
 		
 		}else if(searchType == 'featureOnTop'){ 
 
 			var URL = featuredURL;
 			var heading = "Featured Questions";
-			ajaxRequest(URL, heading);
+			var float = false;
+			ajaxRequest(URL, heading, float);
 
 			// Repeat the process to display multiple kinds of results
 			var URL = latestURL;
 			var heading = "The 10 Latest Questions";
-			ajaxRequest(URL, heading);
+			ajaxRequest(URL, heading, float);
 			
 		}else if(searchType == 'latestOnTop'){ 
 
 			var URL = latestURL;
 			var heading = "The 10 Latest Questions";
-			ajaxRequest(URL, heading);
+			var float = false;
+			ajaxRequest(URL, heading, float);
 
 			var URL = featuredURL;
 			var heading = "Featured Questions";
-			ajaxRequest(URL, heading);
+			ajaxRequest(URL, heading, float);
 
 		}else if(searchType == 'featuredOnLeft'){ 
 
@@ -178,9 +181,7 @@
 			var heading = "Featured Questions";
 			ajaxRequest(URL, heading, float);
 
-		}
-
-		
+		}	
 	} // end search() function
 </script>
 
