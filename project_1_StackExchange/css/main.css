@@ -72,8 +72,22 @@ img {
 article h3 {
 	margin: 20px;
 }
-article p, h4{
+
+article h4 {
+	margin: 10px 0 10px 20px;
+	font-size: 1.3em;
+}
+
+.reputation {
+	margin-left: 20px;
+}
+
+.answerStatus{
 	float: right;
+	margin-right: 20px;
+	font-size: 1.5em;
+	color: #fff;
+	font-weight: 400;
 }
 
 article ul {
