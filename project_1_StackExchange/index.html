@@ -6,35 +6,8 @@
 		Project 1 Stack Exchange
 		CTEC 290 API
 		Winter 2018
-
-		-Include page headers, footers and navigation as needed
-		-The page must be professional looking
-		-Use HTML5 markup
-		-The page HTML and CSS must validate
-		-All code must be adequately commented
-		-Provide a way for users to manually refresh the content sections
-		-Display a list of the latest 15 questions asked on the site and include the following with each question:
-			x-The questions title
-			x-The name of the person who submitted the question and their reputation and their avatar. The image and name should be clickable and link to their profile on the site.
-			x-If the question has been answered display a visual indicator letting users know that it has been answered
-			x-Each tag should be clickable and link to a view on the Stack Exchange site which displays all items tagged with that tag.
-		-The questions score
-		-The number of answers for the question
-		-Display a list of the latest 10 questions that have no answers for them. Include the following with each question:
-			-The questions title
-			-The name of the person who submitted the question and their reputation and their avatar. The image and name should be clickable and link to their profile on the site.
-			-If the question has been answered display a visual indicator letting users know that it has been answered
-			-Each tag should be clickable and link to a view on the Stack Exchange site which displays all items tagged with that tag.
-			-The questions score
-			-The number of answers for the question
-		-Provide the user with an option to display the page as follows (use a dropdown menu or a series of links for this):
-			-Featured questions on top followed by the latest 10 questions below
-			-Latest 10 questions on top followed by list of featured questions
-			-Featured questions on the left and latest questions on the right
-			-Latest questions on the left and featured on the right
 	-->
-
-
+	
 <head>
 
 	<title>Project 1 Stack Exchange</title>
@@ -82,7 +55,7 @@
 					$.each(tags, function(index, value) {
 						var tagURL = 'https://stackoverflow.com/questions/tagged/';
 						tagURL += value;
-						tagString += '<a href=' + tagURL + '><li>' + value + '</li></a>';
+						tagString += '<a href=' + tagURL + ' class="tags"><li>' + value + '</li></a>';
 					});// end tags .each
 
 					// build the display string
@@ -101,8 +74,11 @@
 				defaultDisplayString += "</div>";
 				$('#resultSection').append(defaultDisplayString);
 
+				// display the last 2 options side by side
 				if(float){
-					$('.questionsDiv').width('498px');
+					$('.questionsDiv').width('598px');
+					$('.questionsDiv').css('float', 'left');
+
 				}	
 			})  // end .done
 		} // end ajaxRequest()

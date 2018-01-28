@@ -7,27 +7,99 @@
 
 */
 
+body {
+	font-family: Arial, Helvetica, sans-serif;
+}
+
 #wrapper {
 	width: 1200px;
 	margin: 0 auto;
 }
 
 header {
-	height: 200px;
+	width: 100%;
+	background-color: #2a88ad;
+	border: 1px solid #257c9e;
+	border-radius: 10px;
+	box-shadow: inset 0 2px 2px 0 rgba(255, 255, 255, 0.17);
 }
 
-article {
+h1 {
+	color: #fff;
+	font-weight: 300;
+	font-size: 30px;
+	padding: 20px;
+	text-shadow: 1px 1px 3px rgba(0,0,0,0.12);
+	border-bottom: 1px solid #000;
+}
+
+nav {
+	margin: 20px;
+}
+
+h2 {
+	font-size: 2em;
+	font-weight: 300;
+	text-align: center;
 	margin-top: 20px;
-	background-color: #fff;
-	border: 1px solid #000;
+	border-bottom: 1px solid #000;
+}
+
+h3 {
+	color: #fff;
+	font-size: 1.5em;
+	margin-bottom: 20px;
+	text-shadow: 1px 1px 3px rgba(0,0,0,0.12);
 }
 
 .questionsDiv {
 	width: 1198px;
-	float: left;
 	margin: 0 auto;
 }
 
+article {
+	margin: 20px;
+	background-color: #fff;
+	border: 1px solid #000;
+	border-radius: 5px;
+	background-color: #2a88ad;
+}
+
+img {
+	margin-left: 20px;
+}
+
+article h3 {
+	margin: 20px;
+}
+article p, h4{
+	float: right;
+}
+
+article ul {
+	clear: both;
+	margin: 20px;
+}
+
+article li {
+	display: inline;
+	margin: 20px 10px 10px 10px;
+}
+
+.tags {
+	font-size: 1.2em;
+	color: #eee;
+	margin: 20px 10px 10px 10px;
+}
+
+
+
 footer {
 	clear: both;
+	border-top: 1px solid #000;
+	margin-top: 10px;
+}
+
+footer p {
+	margin: 10px;
 }
