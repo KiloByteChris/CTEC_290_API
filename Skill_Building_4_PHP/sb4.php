@@ -7,6 +7,7 @@
 		CTEC 290 - API
 		Winter 18
 	-->
+
 	<meta charset="utf-8" />
 	<title>NYT API with PHP</title>
 
@@ -16,6 +17,23 @@
 
 	<!-- Google Fonts -->
 	<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">
+
+	<!-- JQuery -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+
+	<!-- moment.js -->
+	<script src="js/moment.js"></script>
+
+	<script type="text/javascript">
+		$(document).ready( function() {
+			var date = $('.date')
+			date.each( function(index) {
+				var oldDate = this.innertext;
+				var newDate = moment(oldDate).format('YYYY MM DD');
+				$(this).text(newDate);
+			});
+		})
+	</script>
 
 </head>
 <body>
