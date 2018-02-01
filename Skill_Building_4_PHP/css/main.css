@@ -1,0 +1,110 @@
+/*
+
+	CSS for sb4.php
+	Chris McGuire
+	CTEC 290 API
+
+*/
+
+body {
+	background-color: #222222;
+	font-family: Verdana, Geneva, sans-serif
+}
+
+#wrapper {
+	width: 1200px;
+	margin: 0 auto;
+	padding: 10px;
+	border-radius: 50px;
+}
+
+header {
+	color: #FFF;
+	border-bottom: 1px solid #FFF;
+}
+
+h1 {
+	font-family: 'Source Sans Pro', sans-serif;
+	margin-left: 25px;
+	padding-bottom: 10px;
+	font-weight: 100;
+	font-size: 2.7em;
+	text-shadow: 2px 2px #000;
+}
+
+main { 
+	width: 1200px;
+}
+
+article {
+	background-color: #444444;
+	width: 1000px;
+	margin: 10px auto;
+	border-radius: 10px;
+	border: 1px solid #111;
+	padding: 10px;
+}
+
+img {
+	float:left;
+}
+
+h2 {
+	float: left;
+	width: 750px;
+	margin-left: 20px;	
+}
+
+a {
+	font-family: 'Source Sans Pro', sans-serif;
+	color: #dadada;
+	text-decoration: none;
+	font-size: 1.8em;
+	font-weight: 200;
+	text-shadow: 2px 2px #000;
+}
+
+a:hover {
+	color: #fff;
+	text-shadow: 2px 2px #000;
+}
+
+.storySection {
+	float: right;
+	color: #75a340;
+	font-size: 1.2em;
+	font-weight: 100;
+	margin-right: 10px;
+}
+
+.abstract {
+	float: left;
+	color: #EEE;
+	margin: 10px 0 20px 20px;
+	width: 750px;
+	font-weight: 300;
+	font-size: 1.1em;
+	line-height: 1.3em;
+}
+
+.date {
+	clear: both;
+	color: #75a340;
+}
+
+.byLine {
+	clear: both;
+	color: #75a340;
+	font-size: .9em;
+	margin-top: 5px;
+}
+
+footer {
+	border-top: 1px solid #FFF;
+	color: #FFF;
+	clear: both;
+}
+
+footer p{
+	margin-top: 20px;
+}
