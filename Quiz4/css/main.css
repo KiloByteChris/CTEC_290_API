@@ -5,3 +5,59 @@
 	CTEC 290 API
 
 */
+
+body {
+	font-family: Verdana, Geneva, sans-serif;
+	background-color: #C0C0C0;
+}
+
+#wrapper {
+	width: 1200px;
+	margin: 0px auto;
+	background-color: #0F6B73;
+}
+
+header {
+	color: #052426;
+	background-color: #FFF;
+	border: 1px solid #000;
+}
+
+h1 {
+	padding: 10px 0 10px 0;
+	margin-left: 50px;
+	font-weight: 200;
+}
+
+main {
+
+}
+
+#articleSection {
+
+}
+
+article {
+	width: 1100px;
+	margin:	10px auto;
+	background-color: #C0C0C0;
+	border: 1px solid #fff;
+	color: #052426;
+}
+
+h2, h3, h4, p{
+	margin: 10px 20px 0 20px;
+}
+
+a {
+	text-decoration: none;
+	color: #052426;
+}
+
+a:hover {
+	color: #FFF;
+}
+
+footer {
+	color: #FFF;
+}
