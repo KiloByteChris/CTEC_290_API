@@ -18,7 +18,7 @@ $(document).ready(function(){
 	    	$.each (value.linkedideaid, function(key, value){
 	    		linkedideaidString += '<p>'+value+'</p>';
 	    	})
-	    	var commentString = "";
+	    	var commentString = '<h3>Comments:</h3>';
 	    	//display comments
 	    	$.each(value.comments, function(key, value){
 	    		commentString += '<p>'+value.comment+'</p>'+
